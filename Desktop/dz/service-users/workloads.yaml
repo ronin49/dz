@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-zapchasts
+spec:
+  selector:
+    app: service-zapchasts
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      nodePort: 31000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-zapchasts
+spec:
+  selector:
+    matchLabels:
+      app: service-zapchasts
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-zapchasts
+    spec:
+      containers:
+        - name: server
+          image: olehzadorozhnyi/service-zapchasts
+          ports:
+            - name: http
+              containerPort: 8080
+
+---
