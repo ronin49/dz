@@ -1,7 +1,7 @@
 FROM openjdk:17-alpine
 
 WORKDIR /opt/server
-COPY ./target/service-cars-0.0.1-SNAPSHOT.jar server.jar
+COPY ./out/artifacts/service_users_jar/service-users.jar server.jar
 
 EXPOSE 8080
 
